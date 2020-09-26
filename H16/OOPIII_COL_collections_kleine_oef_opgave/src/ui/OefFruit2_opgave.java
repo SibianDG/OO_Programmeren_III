@@ -24,6 +24,9 @@ public class OefFruit2_opgave {
 //Voeg de verschillende kisten samen in een ArrayList list.
 //--------------------------------------------------------
 
+        list = new ArrayList<>();
+        list = list.stream(kist[0]).map()
+
 
         CollectionOperaties.verwijderOpLetter(list, 'p');
         System.out.println("na verwijder letter ('p') :  " + list + "\n");

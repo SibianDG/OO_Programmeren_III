@@ -3,7 +3,6 @@ package ui;
 import java.util.*;
 
 public class OefFruit1_opgave {
-
     public static void main(String args[]) {
         String arX[] = {"appel", "peer", "citroen", "kiwi"},
                 arY[] = {"banaan", "mango", "citroen", "kiwi", "zespri"};
@@ -14,8 +13,18 @@ public class OefFruit1_opgave {
 		In y zit extra [banaan, mango, zespri]
 		In x zit extra [appel, peer]
 		x en y hebben gemeenschappelijk [citroen, kiwi]
+		https://stackoverflow.com/questions/29284061/find-the-uncommon-common-all-elements-from-two-different-array-list-objects-in
          */
-        
-        
+        List<String> liX = new ArrayList<>(Arrays.asList(arX));
+        List<String> liY = new ArrayList<>(Arrays.asList(arY));
+
+        //liY.removeAll(liX);
+        //liX.removeAll(liY);
+        liX.retainAll(liY);
+
+        System.out.println("X: " + liX);
+        System.out.println("Y: " + liY);
+
+
     }
 }

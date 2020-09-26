@@ -17,24 +17,24 @@ public class KleineOefeningenList_Opgave {
         list = new ArrayList<>(Arrays.asList(COLORS));
         weergevenLijst("oplossing: red white blue ", list);
 
-		// Cre�er een tweede lege arrayList (list2)
-		// -------------------------------------------
+        // Cre�er een tweede lege arrayList (list2)
+        // -------------------------------------------
         list2 = new ArrayList<>();
 
-		// alle elementen van list kopi�ren naar een tweede arrayList list2 (= 1
-		// instructie)
-		// ---------------------------------------------------------------------------------
+        // alle elementen van list kopi�ren naar een tweede arrayList list2 (= 1
+        // instructie)
+        // ---------------------------------------------------------------------------------
         list2.addAll(list);
-		
+
         naarHoofdletterOmzetten(list);
         weergevenLijst("oplossing: alle elementen van list in hoofdletters", list);
 
         list = naarKleineLettersOmzetten(list);
         weergevenLijst("oplossing: alle elementen van list in kleine letters", list);
 
-   } // end constructor
+    } // end constructor
 
-   public <T> void weergevenLijst(String oplossing, List<T> list) {
+    public <T> void weergevenLijst(String oplossing, List<T> list) {
         //Geef alle elementen van de List weer (laat een spatie tussen elk element).
         //Gebruik printf*/
         //--------------------------------------------------------------------------
@@ -43,9 +43,8 @@ public class KleineOefeningenList_Opgave {
         //    System.out.println("%s ", el);
         //}
        list.forEach(el -> System.out.printf("%s ", el));
-        System.out.println("\n");
+       System.out.println("\n");
     }
-
     public void naarHoofdletterOmzetten(List<String> list) {
         //Alle strings van list worden omgezet naar hoofdletters
         //-------------------------------------------------------------
