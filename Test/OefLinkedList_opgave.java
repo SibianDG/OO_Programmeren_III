@@ -42,7 +42,6 @@ public class OefLinkedList_opgave {
         //Alle elementen van de lijst wijzigen:
         //alle elementen worden met 1 verhoogd
         //JAVA 7:
-
         //JAVA 8:
         lijst.stream().reduce(1, (a,b) -> a+1);
     }
