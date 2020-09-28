@@ -8,6 +8,15 @@ public class HoorcollegeCollections {
     private void run() {
         System.out.println("C I");
         String[] ar = {"Jan", "Piet", "Adriaan", "Corneel"};
+
+        System.out.println(Arrays.toString(ar));
+        //Arrays.sort(ar);
+        li = new ArrayList<>(Arrays.asList(ar)); //Collections alleen met collections te initialiseren,
+        li = Arrays.asList(ar); //Kan toch ook?! => Verschil: asList() levert IMUTTABLE collectie => Niet wijzigbaar
+        //VERSIE 3: VIA IMMUTABLE
+        li = List.of("Jan", "Piet", "Joris", "Cornelis"); //Immutable versie
+        li = new ArrayList<>(List.of("Jan", "Piet", "Joris", "Cornelis")); //echte mutable versie
+
         List<String> li;
         li = new ArrayList<>();
         for (String el: ar){

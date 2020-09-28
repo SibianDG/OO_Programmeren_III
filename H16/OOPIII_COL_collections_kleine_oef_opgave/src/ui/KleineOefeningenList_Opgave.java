@@ -42,6 +42,9 @@ public class KleineOefeningenList_Opgave {
         //for (T el: list){
         //    System.out.println("%s ", el);
         //}
+        for(T elem: list) {
+            System.out.printf("%s ", elem);
+        }
        list.forEach(el -> System.out.printf("%s ", el));
        System.out.println("\n");
     }
