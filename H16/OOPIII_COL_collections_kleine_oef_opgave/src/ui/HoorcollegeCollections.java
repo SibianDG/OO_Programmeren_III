@@ -1,8 +1,12 @@
+package ui;
+
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class HoorcollegeCollections {
     public static void main(String[] args) {
-        new HoorcollegeCollections().run();
+        new HoorcollegeCollections().run2();
     }
 
     private void run() {
@@ -11,13 +15,14 @@ public class HoorcollegeCollections {
 
         System.out.println(Arrays.toString(ar));
         //Arrays.sort(ar);
+        List<String> li;
         li = new ArrayList<>(Arrays.asList(ar)); //Collections alleen met collections te initialiseren,
         li = Arrays.asList(ar); //Kan toch ook?! => Verschil: asList() levert IMUTTABLE collectie => Niet wijzigbaar
         //VERSIE 3: VIA IMMUTABLE
         li = List.of("Jan", "Piet", "Joris", "Cornelis"); //Immutable versie
         li = new ArrayList<>(List.of("Jan", "Piet", "Joris", "Cornelis")); //echte mutable versie
 
-        List<String> li;
+        //List<String> li;
         li = new ArrayList<>();
         for (String el: ar){
             li.add(el);
@@ -67,5 +72,20 @@ public class HoorcollegeCollections {
         System.out.println(li);
 
         li.removeIf(el -> el.startsWith("J"));
+    }
+
+    private void run2(){
+        System.out.println("Intro mappen");
+        List<Persoon> li = Arrays.asList(new Persoon("Jan", 20)
+                , new Persoon("Piet", 30), new Persoon("Joris", 20)
+                , new Persoon("Cornelis", 15)
+        );
+        Map<String, Persoon> map;
+        map = li.stream().collect(Collectors.toMap(Persoon::getNaam, Function.identity()));
+        System.out.println(map);
+        System.out.println(map.get("Piet").getLeeftijd());
+        System.out.println(map.keySet());
+        System.out.println(map.values());
+        System.out.println(map.entrySet());
     }
 }

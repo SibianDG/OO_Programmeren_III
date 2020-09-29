@@ -1,14 +1,13 @@
+package ui;
+
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class OefLinkedList_opgave {
     public OefLinkedList_opgave() {
 
-        Integer getallen[] = {4, 3, 9, 7};
+        Integer[] getallen = {4, 3, 9, 7};
 
 
 //Cre�er een 'arrayList' en vul op met de array "getallen" (1 instructie)
@@ -43,13 +42,15 @@ public class OefLinkedList_opgave {
     {
         //Alle elementen van de lijst wijzigen:
         //alle elementen worden met 1 verhoogd
-        //JAVA 7:
+        //SLECHT:
         //for (int i = 0; i < lijst.size(); i++) {
         //    lijst.set(i, lijst.get(i)+1);
         //}
+        //JAVA 7 met ListIterator -> expleciet met listIterator:
+        //
         //JAVA 8:
         //FIXME
-        lijst = lijst.stream().map(i -> i+1).collect(Collectors.toList());
+        lijst.replaceAll(el -> el + 1);
     }
 
     public List<Integer> metEenVerhogen_java8(List<Integer> lijst)
@@ -61,7 +62,7 @@ public class OefLinkedList_opgave {
     }
 
     //generieke methode:
-    public <T> void weergevenLijst(String oplossing, List<T> list) //---                                       -------------
+    public <T> void weergevenLijst(String oplossing, Collection<T> list) //---                                       -------------
     // Alle elementen van de Collection<Integer> weergeven
     //---------------------------------------------------
     {
@@ -71,12 +72,19 @@ public class OefLinkedList_opgave {
     }
 
     //generieke methode:
-    public void weergevenLijstOmgekeerdeVolgorde(String oplossing, List<String> lijst) {
+    public <T> void weergevenLijstOmgekeerdeVolgorde(String oplossing, List<T> lijst) {
         // Alle elementen van de List<Integer> in omgekeerde volgorde weergeven
         //--------------------------------------------------------------------------------------
-        System.out.printf("%s%n%s", oplossing, "           ");
-        for (int i = lijst.size() - 1; i >= 0 ; i--) {
-            System.out.printf("%s ", lijst.get(i));
+        //System.out.printf("%s%n%s", oplossing, "           ");
+        //for (int i = lijst.size() - 1; i >= 0 ; i--) {
+        //    System.out.printf("%s ", lijst.get(i));
+        //}
+
+
+        // ITERATOR ACHTERUIT
+        ListIterator<T> iterator = lijst.listIterator(lijst.size());
+        while (iterator.hasPrevious()){
+            System.out.printf("%s ", iterator.previous());
         }
 
         System.out.println();
@@ -85,7 +93,11 @@ public class OefLinkedList_opgave {
         System.out.println(
                 "java 8 lijst omgekeerde volgorde: ");
         System.out.printf("%s%n%s", oplossing, "           ");
-        //TODO: JAVA8:
+        /* TODO: JAVA8: */
+        // Kan via descending iterator -> eerst verpakken in linkedlist (beetje te veel omweg)
+        new LinkedList<>(lijst).descendingIterator().forEachRemaining(el -> System.out.printf("%s ", el));
+
+
 
         System.out.println();
     }

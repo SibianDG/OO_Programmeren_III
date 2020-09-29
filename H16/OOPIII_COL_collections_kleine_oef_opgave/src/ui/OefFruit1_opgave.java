@@ -15,11 +15,12 @@ public class OefFruit1_opgave {
 		x en y hebben gemeenschappelijk [citroen, kiwi]
 		https://stackoverflow.com/questions/29284061/find-the-uncommon-common-all-elements-from-two-different-array-list-objects-in
          */
-        List<String> liX = new ArrayList<>(Arrays.asList(arX));
-        List<String> liY = new ArrayList<>(Arrays.asList(arY));
+        Collection<String> liX = new ArrayList<>(Arrays.asList(arX)),
+                    liY = new ArrayList<>(Arrays.asList(arY));
 
-        //liY.removeAll(liX);
-        //liX.removeAll(liY);
+        Collection<String> res = new ArrayList<>(liY);
+        //res.removeAll(liX);
+        //res.removeAll(liY);
         liX.retainAll(liY);
 
         System.out.println("X: " + liX);
