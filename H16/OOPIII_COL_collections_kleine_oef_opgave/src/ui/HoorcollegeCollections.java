@@ -87,5 +87,18 @@ public class HoorcollegeCollections {
         System.out.println(map.keySet());
         System.out.println(map.values());
         System.out.println(map.entrySet());
+
+        Map<Integer, List<Persoon>> personenPerLeeftijd = li.stream().
+                collect(Collectors.groupingBy(Persoon::getLeeftijd));
+                //DEFAULT value List<obj die op stream zit> en HashMap
+        System.out.println(personenPerLeeftijd);
+
+        //gemiddelde leeftijd
+        li.stream().
+                //map(Persoon::getLeeftijd) // stream<Integer>
+                mapToInt(Persoon::getLeeftijd). //IntStream
+                average().
+                orElse(0.0);
+
     }
 }

@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 class Boek {
 	private String titel;
@@ -39,6 +40,34 @@ public class OefAlgoritme {
 		// sorteren op isbn_nr in DALENDE volgorde.
 		// ---------------------------------------------------------------
 
+		boeken.sort(new BoekComparator());
+		boeken.sort(new Comparator<Boek>() {
+			@Override
+			public int compare(Boek o1, Boek o2) {
+				int res = o1.getTitel().compareTo(o2.getTitel());
+				if (res != 0)
+					return res;
+				return Long.compare(o2.getIsbn_nr(), o1.getIsbn_nr());
+			}
+		});
+		boeken.sort((Boek b1, Boek b2) -> {
+			int res = b1.getTitel().compareTo(b2.getTitel());
+			if (res != 0)
+				return res;
+			return Long.compare(b2.getIsbn_nr(), b1.getIsbn_nr());
+		});
+		boeken.sort((b1, b2) -> {
+			int res = b1.getTitel().compareTo(b2.getTitel());
+			if (res != 0)
+				return res;
+			return Long.compare(b2.getIsbn_nr(), b1.getIsbn_nr());
+		});
+		//NU PUUR JAVA9?
+		//Draait volledig om:
+		//boeken.sort(Comparator.comparing(Boek::getTitel).thenComparing(Boek::getIsbn_nr).reversed());
+		boeken.sort(Comparator.comparing(Boek::getTitel).thenComparing(Comparator.comparing(Boek::getIsbn_nr).reversed()));
+
+		//Collections.sort();
 		System.out.println("gesorteerd : ");
 		toonLijst(boeken);
 
@@ -46,6 +75,7 @@ public class OefAlgoritme {
 		// ---------------------------------------------------------
 		// java7
 
+		Collections.reverse(boeken);
 		System.out.println("omgekeerde volgorde : ");
 		toonLijst(boeken);
 
@@ -53,10 +83,25 @@ public class OefAlgoritme {
 		// Toon het grootste element van de array getallen
 		// -----------------------------------------------
 		// java7
+		System.out.printf("max: %d%n ", Collections.max(Arrays.asList(getallen)));
+		//java 8
+		Arrays.stream(getallen).max(Integer::compare);
+		System.out.printf("max %d%n", Arrays.stream(getallen).
+				max(Integer::compare).
+				//get()
+				orElse(null)
+		);
+
 
 		// Toon het kleinste element van de array getallen
 		// -----------------------------------------------
 		// java7
+		// EXTRA: Zoek boek met titel "Java"
+		System.out.printf("%s%n", boeken.stream().
+				filter(el -> el.getTitel().equals("JAVA"))
+				.findAny() //Optional<Boek>
+				.orElse(null)
+		);
 
 	}
 
@@ -71,6 +116,18 @@ public class OefAlgoritme {
 
 	public static void main(String args[]) {
 		new OefAlgoritme();
+	}
+
+	//EEN COMPARATOR (als innerklasse: afgeschermd buitenwenwereld en innerklasse kan aan alle klassen in ...)
+	private class BoekComparator implements Comparator<Boek> {
+
+		@Override
+		public int compare(Boek o1, Boek o2) {
+			int res = o1.getTitel().compareTo(o2.getTitel());
+			if (res != 0)
+				return res;
+			return Long.compare(o2.getIsbn_nr(), o1.getIsbn_nr());
+		}
 	}
 
 }// einde klasse OefAlgoritme_Opgave
