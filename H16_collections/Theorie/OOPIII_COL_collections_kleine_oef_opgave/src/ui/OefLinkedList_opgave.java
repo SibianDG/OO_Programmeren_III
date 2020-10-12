@@ -49,7 +49,6 @@ public class OefLinkedList_opgave {
         //JAVA 7 met ListIterator -> expleciet met listIterator:
         //
         //JAVA 8:
-        //FIXME
         lijst.replaceAll(el -> el + 1);
     }
 
@@ -93,11 +92,9 @@ public class OefLinkedList_opgave {
         System.out.println(
                 "java 8 lijst omgekeerde volgorde: ");
         System.out.printf("%s%n%s", oplossing, "           ");
-        /* TODO: JAVA8: */
+
         // Kan via descending iterator -> eerst verpakken in linkedlist (beetje te veel omweg)
         new LinkedList<>(lijst).descendingIterator().forEachRemaining(el -> System.out.printf("%s ", el));
-
-
 
         System.out.println();
     }
