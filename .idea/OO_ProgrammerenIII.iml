@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_14_PREVIEW" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_14" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/Test" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/H16/OOPIII_COL_collections_kleine_oef_opgave/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/H17_lambda_streams/Theorie/Voorbeelden_H17_Deitel/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/H16_collections/Oefeningen/OOPIII_COL_lab_Garage_start/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

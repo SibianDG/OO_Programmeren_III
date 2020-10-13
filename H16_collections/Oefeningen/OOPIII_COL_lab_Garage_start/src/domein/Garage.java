@@ -2,10 +2,9 @@ package domein;
 
 import java.io.File;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.Calendar;
+import java.util.*;
+import java.util.stream.Collectors;
+
 import persistentie.PersistentieController;
 
 public class Garage {
@@ -30,7 +29,7 @@ public class Garage {
                 = new PersistentieController(auto, onderhoud);
 
         //Set<Auto> inlezen - stap1
-        Set<Auto> autoSet = null;
+        Set<Auto> autoSet = new HashSet<>(persistentieController.geefAutos());
         System.out.println("STAP 1");
 
         // Maak map van auto's: volgens nummerplaat - stap2
@@ -62,11 +61,12 @@ public class Garage {
 
     // Maak map van auto's: volgens nummerplaat - stap2
     private Map<String, Auto> omzettenNaarAutoMap(Set<Auto> autoSet) {
-        return null;
+        return autoSet.stream().collect(Collectors.toMap(Auto::getNummerplaat, a -> b));
     }
 
     // lijst sorteren - stap4
     private void sorteren(List<Onderhoud> lijstOnderhoud) {
+        lijstOnderhoud.sort(Comparator.comparing(Onderhoud::getNummerplaat).thenComparing(Onderhoud::getBegindatum));
     }
 
     // lijst samenvoegen - stap5

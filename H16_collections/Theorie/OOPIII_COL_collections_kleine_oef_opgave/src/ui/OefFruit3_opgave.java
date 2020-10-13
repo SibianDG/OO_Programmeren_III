@@ -13,6 +13,10 @@ public class OefFruit3_opgave {
         List<String> list = new ArrayList<>();
         Scanner in = new Scanner(System.in);
 
+        List<String> list1 = Arrays.stream(kist).
+                flatMap(Arrays::stream).collect(Collectors.toList());
+
+
         //declaratie + creatie map
         //------------------------------
         for (String[] k: kist){
@@ -33,6 +37,7 @@ public class OefFruit3_opgave {
             System.out.printf("Prijs van %s : ", k);
             double prijs = in.nextDouble();
             fruit.replace(k, prijs);
+            //entry.setValue(prijs)
             System.out.println();
         });
 

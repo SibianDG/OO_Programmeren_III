@@ -1,6 +1,6 @@
 package persistentie;
 
-import domein.Bier;
+import domein.*;
 import java.util.List;
 
 public class PersistentieController {
