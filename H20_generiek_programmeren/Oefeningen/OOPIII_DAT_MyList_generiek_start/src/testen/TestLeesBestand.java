@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.nio.file.Files;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,10 +22,13 @@ public class TestLeesBestand {
     {"Tripel_Karmeliet", 8.4}, {"Westmalle_Tripel", 9.5},};
 
     private MyListIterable<Bier> leesBestand() {
-        
-        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(new File("C:\\Users\\sibia\\OneDrive - Hogeschool Gent\\2e bach\\OO_Programmeren_III\\H20_generiek_programmeren\\Oefeningen\\OOPIII_DAT_MyList_generiek_start\\bierenListObj.dat").toPath()))) {
-            return (MyListIterable<Bier>) in.readObject();
+        System.out.println("Test");
+        try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(new File("bierenListObj.dat").toPath()))) {
+            System.out.println(in.readObject());
+            //return (MyListIterable<Bier>) in.readObject();
+            return null;
         } catch (ClassNotFoundException | IOException ex) {
+            System.out.println(Arrays.toString(ex.getStackTrace()));
             return null;
         }
     }

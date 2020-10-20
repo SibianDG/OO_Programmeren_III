@@ -82,7 +82,7 @@ public class TestStackGeneriek {
 						Assertions.assertEquals(expected, myStack.pop());
 						Assertions.assertFalse(myStack.isEmpty());
 					});
-		Assertions.assertEquals(listExpected.size()-1, myStack.pop());
+		Assertions.assertEquals(listExpected.get(listExpected.size()-1), myStack.pop());
 		Assertions.assertTrue(myStack.isEmpty());
 	}
 	//----------------------------------------------------------------------------

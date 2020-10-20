@@ -31,9 +31,9 @@ public class Garage {
         //Set<Auto> inlezen - stap1
         Set<Auto> autoSet = new HashSet<>(persistentieController.geefAutos());
         System.out.println("STAP 1");
-        System.out.println(autoSet);
 
         // Maak map van auto's: volgens nummerplaat - stap2
+        System.out.println("STAP 2");
         autoMap = omzettenNaarAutoMap(autoSet);
         System.out.println("STAP 2");
         System.out.println(autoMap);
@@ -59,14 +59,13 @@ public class Garage {
 
         // Maak overzicht: set van auto's - stap7
         overzichtLijstVanAutos = maakOverzicht(autoOnderhoudMap);
-        System.out.println("STAP 7");
+        System.out.println("STAP 7 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         overzichtLijstVanAutos.forEach(System.out::println);
     }
 
     // Maak map van auto's: volgens nummerplaat - stap2
     private Map<String, Auto> omzettenNaarAutoMap(Set<Auto> autoSet) {
-        return autoSet
-                .stream()
+        return autoSet.stream()
                 .collect(Collectors.toMap(Auto::getNummerplaat, a -> a));
     }
 
