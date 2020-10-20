@@ -5,7 +5,8 @@ public class DomeinController {
     private final Garage garage;
 
     public DomeinController() {
-        garage= new Garage("autoObjecten.dat", "onderhoudObjecten.dat");
+        garage= new Garage("C:\\Users\\sibia\\OneDrive - Hogeschool Gent\\2e bach\\OO_Programmeren_III\\H16_collections\\Oefeningen\\OOPIII_COL_lab_Garage_start\\autoObjecten.dat"
+                , "C:\\Users\\sibia\\OneDrive - Hogeschool Gent\\2e bach\\OO_Programmeren_III\\H16_collections\\Oefeningen\\OOPIII_COL_lab_Garage_start\\onderhoudObjecten.dat");
     } 
 
     public String autoMap_ToString() {
