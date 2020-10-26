@@ -22,11 +22,10 @@ public class TestLeesBestand {
     {"Tripel_Karmeliet", 8.4}, {"Westmalle_Tripel", 9.5},};
 
     private MyListIterable<Bier> leesBestand() {
-        System.out.println("Test");
         try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(new File("bierenListObj.dat").toPath()))) {
-            System.out.println(in.readObject());
-            //return (MyListIterable<Bier>) in.readObject();
-            return null;
+            //System.out.println(in.readObject());
+            System.out.println("voor return");
+            return (MyListIterable<Bier>) in.readObject();
         } catch (ClassNotFoundException | IOException ex) {
             System.out.println(Arrays.toString(ex.getStackTrace()));
             return null;
