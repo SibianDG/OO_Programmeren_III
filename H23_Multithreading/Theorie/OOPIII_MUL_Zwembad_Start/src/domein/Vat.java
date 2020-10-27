@@ -1,7 +1,7 @@
 package domein;
 
 //VUL DE KLASSE VERDER AAN
-public class Vat {
+public class Vat implements Runnable {
 
     private final Tafel tafel;
     private int inhoud;
@@ -11,5 +11,14 @@ public class Vat {
         this.tafel = tafel;
     }
 
-//TODO
+    @Override
+    public void run() {
+        while (inhoud > 0){
+            tafel.vulEmmer();
+            inhoud--;
+            System.out.println("Emmer gevuld");
+        }
+        tafel.setVatIsLeeg();
+    }
+
 }

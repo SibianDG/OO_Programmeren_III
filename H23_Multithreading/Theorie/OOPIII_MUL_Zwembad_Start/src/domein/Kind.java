@@ -3,7 +3,7 @@ package domein;
 import java.security.SecureRandom;
 
 // VUL DE KLASSE VERDER AAN
-public class Kind {
+public class Kind implements Runnable {
 
     private final Tafel tafel;
     private final Zwembad zwembad;
@@ -17,6 +17,17 @@ public class Kind {
     }
 
     public void run() {
+
+        while (!zwembad.vol() && tafel.pakEmmer()){
+            try {
+                Thread.sleep(generator.nextInt(1001)+2000);
+                zwembad.gietEmmer();
+                System.out.printf("%s heeft een emmer genomen%n", naam);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                Thread.currentThread().interrupt();
+            }
+        }
 
         System.out.printf("%s : "
                 + (zwembad.vol() ? "zwembad vol" : "reeds "
