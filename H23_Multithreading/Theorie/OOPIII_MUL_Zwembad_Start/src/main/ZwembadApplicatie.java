@@ -25,7 +25,6 @@ public class ZwembadApplicatie {
 		IntStream.range(0, kind.length).forEach(i -> 
 			kind[i] = new Kind(tafel, new Zwembad(4), "Kind " + (i + 1))
 		);
-
 		// VUL VERDER AAN
 		// --------------
 		ExecutorService pool = Executors.newFixedThreadPool(kind.length+1);
