@@ -29,7 +29,12 @@ public class TellerPaneController extends BorderPane {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-//TODO        
+		//nog niet oke
+		// changed method wordt aangeroepen bij iederen wijziging DAT NIET DE JAVAFX APP thread is
+		// NOG AAN TE PASSEN
+		// Aanbieden aan JAVAFX platform
+        dc.addObserver((obs, oldV, newV)
+				-> Platform.runLater(() -> labTeller.setText(newV.toString())));
         
 	}
 	

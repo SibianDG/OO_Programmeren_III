@@ -21,15 +21,32 @@ public class TellerThread implements Runnable {
 	}
 	
 	public void suspend() {
-
+		accessLock.lock();
+		try {
+			pauze = true;
+		} finally {
+			accessLock.unlock();
+		}
 	}
 	
 	public void resume() {
+		accessLock.lock();
+		try {
+			pauze = false;
+			kanDoorgaan.signal();
+		} finally {
+			accessLock.unlock();
+		}
 
 	}
 	
 	public void stop() {
-
+		accessLock.lock();
+		try {
+			going = false;
+		} finally {
+			accessLock.unlock();
+		}
 	}
 	
 	@Override
@@ -40,11 +57,18 @@ public class TellerThread implements Runnable {
 				Thread.sleep(100);
 			//TODO nagaan of er moet gepauzeerd worden
 		    // en indien zo Thread in wait toestand brengen
+				accessLock.lock();
+				while (pauze) {
+					kanDoorgaan.await();
+				}
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 				Thread.currentThread().interrupt();
-			} 
+			} finally {
+				// TODO: DO NOT FORGET ME:
+				accessLock.unlock();
+			}
 							
 		}
 	}
