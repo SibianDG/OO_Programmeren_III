@@ -1,17 +1,23 @@
 package domein;
 
 import java.io.IOException;
+import java.net.Socket;
+import java.util.Formatter;
+import java.util.Scanner;
 
 public class FileTransfer {
     //Attributen netwerkverbinding/streams
-    //TODO
+    private final String EOF= "*E*O*F*";
+    private Socket socket;
+    private Scanner socketInput;
+    private Formatter socketOutput;
 
     public FileTransfer(String host) {
         try {
             //Maak verbinding met server, init attributen
-            //TODO
-
-            
+            socket = new Socket(host, 44444);
+            socketInput = new Scanner(socket.getInputStream());
+            socketOutput = new Formatter(socket.getOutputStream());
         } catch (IOException ex) {
             System.out.println("Probleem " + ex.getMessage());
         }
@@ -20,9 +26,19 @@ public class FileTransfer {
     public String readFile(String fileNaam) {
         //verzoek server om bestand  'fileNaam' door te sturen
         //lees het bestand in als de server het doorstuurt
-        //TODO
-        
-            
+        socketOutput.format("%s%n", "READ");
+        socketOutput.format("%s%n", fileNaam);
+        socketOutput.flush();
+        String reactie = socketInput.nextLine();
+        if (reactie.equals("FOUND")){
+            String line;
+            StringBuilder fileContent = new StringBuilder();
+            while (!(line=socketInput.nextLine()).equals(EOF)){
+                //er moet nog iets
+                fileContent.append(line).append(System.lineSeparator());
+            }
+            return fileContent.toString();
+        }
         return "BESTAND NIET GEVONDEN";
     }
 
@@ -31,14 +47,19 @@ public class FileTransfer {
         //geef de eventueel gewijzigde bestandsnaam mee door
         //bij onveranderde bestandsnaam zal de server het originele bestand overschrijven
         //stuur het bestand door naar de server
-        //TODO
-    
+        socketOutput.format("%s%n", "REWRITE");
+        socketOutput.format("%s%n", fileNaam);
+        socketOutput.flush();
+        socketOutput.format(fixEOL(fileContents));
+        socketOutput.format("%s%n", EOF);
+        socketOutput.flush();
     }
     
     public void closeConnection() {
         try {
-        //TODO
-        
+            if (socket != null){
+                socket.close();
+            }
         } catch (IOException ex) {
             System.out.println("Probleem " + ex.getMessage());
         }
