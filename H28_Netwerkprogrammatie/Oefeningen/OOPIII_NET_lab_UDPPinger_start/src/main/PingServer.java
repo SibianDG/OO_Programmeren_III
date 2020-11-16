@@ -8,13 +8,12 @@ import java.security.SecureRandom;
  /*
   * Server to process ping requests over UDP.
   */
- public class PingServer
- {
+ public class PingServer {
     private static final double LOSS_RATE = 0.3;
     private static final int AVERAGE_DELAY = 100;  // milliseconds
 
-    public static void main(String[] args) throws Exception
-    {  int port = 5555; // default value
+    public static void main(String[] args) throws Exception {
+       int port = 5555; // default value
        // Get command line argument.
        if (args.length == 1) {
           port   = Integer.parseInt(args[0]);
@@ -26,6 +25,7 @@ import java.security.SecureRandom;
 
        // Create a datagram socket for receiving and sending UDP packets
        // through the port specified on the command line.
+       // FIXME: info: UDP? DatagramSocket aan beide kanten
        DatagramSocket socket = new DatagramSocket(port);
        // Create a datagram packet to hold incomming UDP packet.
        DatagramPacket request = new DatagramPacket(new byte[1024], 1024);
@@ -40,7 +40,7 @@ import java.security.SecureRandom;
           // Decide whether to reply, or simulate packet loss.
           if (random.nextDouble() < LOSS_RATE) {
              System.out.println("   Reply not sent.");
-             continue; 
+             continue; // terug naar while bovenaan
           }
 
           // Simulate network delay.
