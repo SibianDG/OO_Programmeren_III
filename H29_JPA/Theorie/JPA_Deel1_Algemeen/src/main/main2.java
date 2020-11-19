@@ -26,6 +26,5 @@ public class main2 {
 
         em.close();
         JPAUntil.getEntityManagerFactory().close();
-
     }
 }
