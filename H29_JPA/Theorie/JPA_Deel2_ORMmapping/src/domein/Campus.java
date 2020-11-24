@@ -8,13 +8,18 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Campus.findAll", query = "SELECT c FROM Docent c"),
+        @NamedQuery(name = "Campus.findByName", query = "SELECT c FROM Campus c WHERE c.campusNaam = :naam")
+
+})
 public class Campus implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int campusID;
     private String campusNaam;
-    @ManyToMany(mappedBy = "campussen")
+    @ManyToMany(mappedBy = "campussen", fetch = FetchType.EAGER)
     private Set<Docent> docenten = new HashSet<>();
 
     public Campus(String campusNaam) {

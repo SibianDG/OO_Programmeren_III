@@ -9,6 +9,12 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity //je moet klasse als entiteit aanduiden
+@NamedQueries({
+        @NamedQuery(name = "Docent.findAll",
+                query = "SELECT d FROM Docent d"),
+        @NamedQuery(name = "Docent.docentenInTweeCampussen",
+                query = "SELECT d FROM Docent d WHERE :campusA MEMBER OF d.campussen AND :campusB MEMBER OF d.campussen"),
+})
 @Table(name = "docenten")
 public class Docent implements Serializable {  //best serialable best voor JPA
     private static final long serialVersionUID = 1L;
@@ -20,7 +26,7 @@ public class Docent implements Serializable {  //best serialable best voor JPA
     private String voornaam;
     private String familienaam;
     private BigDecimal wedde;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER) //DEFAULT bij x to many is LAZY
     private Set<Campus> campussen = new HashSet<>();
     @ManyToOne
     private Werkruimte werkruimte;
