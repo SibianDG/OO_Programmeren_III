@@ -16,7 +16,7 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_14" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/H29_JPA/Theorie/JPA_Deel2_ORMmapping/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/H29_JPA/Oefeningen/OOPIII_JPA_lab_Garage_startversieMetFrame/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
