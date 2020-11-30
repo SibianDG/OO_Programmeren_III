@@ -9,7 +9,7 @@
           <factory-entry name="school" />
         </datasource-mapping>
         <naming-strategy-map />
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/H29_JPA/Theorie/JPA_Deel1_Algemeen/src/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/H29_JPA/Oefeningen/OOPIII_JPA_lab_Garage_startversieMetFrame/src/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>

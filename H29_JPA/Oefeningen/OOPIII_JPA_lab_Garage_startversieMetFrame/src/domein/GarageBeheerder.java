@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -37,7 +38,12 @@ public class GarageBeheerder {
     }
 
     public List<Auto> geefAutosZonderOnderhoudsbeurt() {
-        return null;
+        return vervoerMap.values()  //map geen Collection, dus geen stream, values oplossing
+                .stream() // Stream<Vervoermiddel>
+                .filter(v -> v instanceof Auto)
+                .filter(v -> v.getOnderhoudsbeurten().isEmpty())
+                .map(v -> (Auto) v)   // Stream<Auto>
+                .collect(Collectors.toList());
     }
 
     public List<Auto> geefAutosZonderOnderhoudsbeurtJPA() {
@@ -45,7 +51,12 @@ public class GarageBeheerder {
     }
 
     public List<Auto> geefAutosMetOnderhoudsbeurt() {
-        return null;
+        return vervoerMap.values()  //map geen Collection, dus geen stream, values oplossing
+                .stream() // Stream<Vervoermiddel>
+                .filter(v -> v instanceof Auto)
+                .filter(v -> !v.getOnderhoudsbeurten().isEmpty())
+                .map(v -> (Auto) v)   // Stream<Auto>
+                .collect(Collectors.toList());
     }
 
     public List<Auto> geefAutosMetOnderhoudsbeurtJPA() {
@@ -53,7 +64,10 @@ public class GarageBeheerder {
     }
 
     public List<Onderhoudsbeurt> geefOnderhoudsbeurtenOpDatum(LocalDate dat) {
-        return null;
+        return vervoerMap.values().stream()  //Stream<Vervoermiddel>
+                        .map(v -> v.geefOnderhoudsbeurt(dat))  //Stream<Onderhoudsbeurt>
+                        .filter(o -> o != null)
+                        .collect(Collectors.toList());
     }
 
     public List<Onderhoudsbeurt> geefOnderhoudsbeurtenOpDatumJPA(LocalDate dat) {
@@ -62,14 +76,17 @@ public class GarageBeheerder {
 
     public void addVervoermiddel(Vervoermiddel v) {
         vervoerMap.put(v.getNummerplaat(), v);
-        //TODO
-        
+        em.getTransaction().begin();
+        em.persist(v);
+        em.getTransaction().commit();
     }
 
     public void addOnderhoudsbeurt(String nrplaat, LocalDate begin, LocalDate einde) {
         Vervoermiddel v = vervoerMap.get(nrplaat);
         Onderhoudsbeurt o = new Onderhoudsbeurt(begin, einde, v);
-        //TODO
-        
+        em.getTransaction().begin();
+        v.addOnderhoudsbeurt(o); //bidrectionele associatie
+        em.persist(o);
+        em.getTransaction().commit();
     }
 }
