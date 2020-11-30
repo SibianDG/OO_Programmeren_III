@@ -63,5 +63,4 @@ public abstract class Vervoermiddel implements TebetalenTaks, Serializable {
     public String toString() {
         return String.format("Vervoermiddel{nummerplaat=%s}%n", nummerplaat);
     }
-
 }
