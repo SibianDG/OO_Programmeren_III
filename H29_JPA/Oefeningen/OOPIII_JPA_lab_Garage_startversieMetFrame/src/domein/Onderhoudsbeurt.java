@@ -5,6 +5,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Onderhoudsbeurt.opDatum",
+                query = "SELECT o FROM Onderhoudsbeurt o WHERE :dat BETWEEN o.begindatum AND o.einddatum")
+})
 public class Onderhoudsbeurt implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

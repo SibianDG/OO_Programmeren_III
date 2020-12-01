@@ -47,7 +47,8 @@ public class GarageBeheerder {
     }
 
     public List<Auto> geefAutosZonderOnderhoudsbeurtJPA() {
-        return null;
+        return em.createNamedQuery("Auto.alleAutoZonderOnderhoud", Auto.class)
+                .getResultList();
     }
 
     public List<Auto> geefAutosMetOnderhoudsbeurt() {
@@ -60,7 +61,8 @@ public class GarageBeheerder {
     }
 
     public List<Auto> geefAutosMetOnderhoudsbeurtJPA() {
-        return null;
+        return em.createNamedQuery("Auto.alleAutoMetOnderhoud", Auto.class)
+                .getResultList();
     }
 
     public List<Onderhoudsbeurt> geefOnderhoudsbeurtenOpDatum(LocalDate dat) {
@@ -71,7 +73,9 @@ public class GarageBeheerder {
     }
 
     public List<Onderhoudsbeurt> geefOnderhoudsbeurtenOpDatumJPA(LocalDate dat) {
-        return null;
+        return em.createNamedQuery("Onderhoudsbeurt.opDatum",
+                Onderhoudsbeurt.class).setParameter("dat", dat)
+                .getResultList();
     }
 
     public void addVervoermiddel(Vervoermiddel v) {

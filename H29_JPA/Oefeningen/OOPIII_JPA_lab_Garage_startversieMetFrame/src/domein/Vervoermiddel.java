@@ -10,6 +10,12 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@NamedQueries({
+        @NamedQuery(name = "Vervoermiddel.alleAutoZonderOnderhoud",
+                query = "SELECT a FROM Auto a WHERE SIZE(a.onderhoudsbeurten) = 0"),
+        @NamedQuery(name = "Vervoermiddel.alleAutoMetOnderhoud",
+                query = "SELECT a FROM Auto a WHERE SIZE(a.onderhoudsbeurten) > 0")
+})
 public abstract class Vervoermiddel implements TebetalenTaks, Serializable {
     private static final long serialVersionUID = 1L;
     @Id

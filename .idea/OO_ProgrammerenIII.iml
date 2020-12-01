@@ -5,6 +5,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="OOPIII_JPA_GaragePU" />
           <factory-entry name="bierWinkels" />
           <factory-entry name="school" />
         </datasource-mapping>
@@ -16,7 +17,7 @@
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_14" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/H29_JPA/Oefeningen/OOPIII_JPA_lab_Garage_startversieMetFrame/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/H29_JPA/Theorie/OOPIII_JPA_ApplicationFrame_GrootProject/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

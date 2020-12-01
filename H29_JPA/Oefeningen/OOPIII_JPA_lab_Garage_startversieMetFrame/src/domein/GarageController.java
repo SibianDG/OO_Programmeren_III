@@ -9,19 +9,19 @@ public class GarageController {
     private GarageBeheerder gb = new GarageBeheerder();
 
     public List<String> geefAutosZonderOnderhoudsbeurt() {
-        return gb.geefAutosZonderOnderhoudsbeurt().stream()
+        return gb.geefAutosZonderOnderhoudsbeurtJPA().stream()
                 .map(Auto::getNummerplaat)
                 .collect(Collectors.toList());
     }
 
     public List<String> geefAutosMetOnderhoudsbeurt() {
-        return gb.geefAutosMetOnderhoudsbeurt().stream()
+        return gb.geefAutosMetOnderhoudsbeurtJPA().stream()
                 .map(Auto::getNummerplaat)
                 .collect(Collectors.toList());
     }
 
     public List<String> geefOnderhoudsbeurtenOpDatum(int jaar, int maand, int dag) {
-        return gb.geefOnderhoudsbeurtenOpDatum(LocalDate.of(jaar, maand, dag))
+        return gb.geefOnderhoudsbeurtenOpDatumJPA(LocalDate.of(jaar, maand, dag))
                 .stream().map(Onderhoudsbeurt::getVervoermiddel)
                 .map(Vervoermiddel::getNummerplaat)
                 .collect(Collectors.toList());
