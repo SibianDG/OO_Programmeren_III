@@ -7,8 +7,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
@@ -60,9 +63,12 @@ public class QueryPanelController extends GridPane {
     //generieke methode om een lijst van bepaalde willekeurige objecten
     //aan de listview resultatenListView te koppelen
     //(aanroepen vanuit de methode doeQuery)
-    //TODO methode  showValue 
-    {     spinner.setVisible(false);
+    //TODO methode  showValue
+    private <T> void showValue(List<T> deLijst)
+    {
+        spinner.setVisible(false);
        //TODO... resultatenListView
+        resultatenListView.setItems(FXCollections.observableList(deLijst));
        
     }
 
@@ -71,7 +77,8 @@ public class QueryPanelController extends GridPane {
     //en het resultaat terug op te vragen
     //(aanroep vanuit methode doeQuery 
    //TODO       contactServer methode
-    {    verzendVerzoek(verzoek);
+    {
+        verzendVerzoek(verzoek);
         verzoek = ontvangResultaat();
         showValue(verzoek.getResultaat());
     }
