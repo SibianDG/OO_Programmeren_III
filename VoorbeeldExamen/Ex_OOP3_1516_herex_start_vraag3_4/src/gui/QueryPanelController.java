@@ -6,6 +6,7 @@ import domein.Verzorger;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 import java.util.List;
 import java.util.logging.Level;
@@ -77,7 +78,7 @@ public class QueryPanelController extends GridPane {
     //en het resultaat terug op te vragen
     //(aanroep vanuit methode doeQuery 
    //TODO       contactServer methode
-    {
+    private <T extends Serializable> void contactServer (Verzoek <T> verzoek){
         verzendVerzoek(verzoek);
         verzoek = ontvangResultaat();
         showValue(verzoek.getResultaat());
@@ -100,21 +101,39 @@ public class QueryPanelController extends GridPane {
     }
 
     //TODO methode  verzendVerzoek
-    {
+    private <T extends Serializable> void verzendVerzoek (Verzoek<T> verzoek) {
        //TODO
+        try {
+            connectionOutput.writeObject(verzoek);
+            connectionOutput.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
    //TODO methode ontvangResultaat
-    {
+    private <T extends Serializable> Verzoek<T> ontvangResultaat(){
      //TODO
+        try {
+            return (Verzoek<T>) connectionInput.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void initConnection() {
         final int PORT = 3456;
         final String HOST = "localhost";
-   //TODO
-   
-   
+        //TODO:
+        try {
+            socket = new Socket(HOST, PORT);
+            connectionOutput = new ObjectOutputStream(socket.getOutputStream());
+            connectionOutput.flush(); //TODO: dit is nodig!!
+            connectionInput = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void closeConnection() {
