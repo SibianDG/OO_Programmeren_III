@@ -1,15 +1,25 @@
 package domein;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+//@Entity
 public class Verzorger implements Serializable {
-
+    private static final long serialVersionUID = 1L;
+    //@Id
     private int nummer;
     private String naam;
+    //@ManyToMany
     private final List<Dier> dieren = new ArrayList<>();
-    
+
+    protected Verzorger() {
+    }
+
     public Verzorger(int nummer, String naam) {
         this.nummer = nummer;
         this.naam = naam;
@@ -28,7 +38,7 @@ public class Verzorger implements Serializable {
     }
 
     public List<Dier> getDieren() {
-        return dieren;
+        return Collections.unmodifiableList(dieren);
     }
 
     @Override
@@ -47,10 +57,7 @@ public class Verzorger implements Serializable {
             return false;
         }
         final Verzorger other = (Verzorger) obj;
-        if (this.nummer != other.nummer) {
-            return false;
-        }
-        return true;
+        return this.nummer == other.nummer;
     }
 
     @Override

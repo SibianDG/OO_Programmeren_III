@@ -1,14 +1,25 @@
 package domein;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Gebouw {
-
+//@Entity
+public class Gebouw implements Serializable {
+    private static final long serialVersionUID = 1L;
+    //@Id
     private String naam;
     private int capaciteit;
+    //@OneToMany
     private final List<Dier> dieren = new ArrayList<>();
+
+    public Gebouw() {
+    }
 
     public Gebouw(String naam, int capaciteit) {
         this.naam = naam;

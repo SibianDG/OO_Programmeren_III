@@ -1,6 +1,8 @@
 package domein;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DomeinController {
 
@@ -51,12 +53,21 @@ public class DomeinController {
      */
     public String maakOverzichtVolgensSoort() {
   //TODO
-        return null;
+        Map<Soort, List<Dier>> map = zoo.maakOverzichtVolgensSoort();
+        return map.entrySet().stream() //Stream<Map.Entry<Soort, List<Dier>>
+                            .map(entry -> String.format("%s => %s%n", entry.getKey(), entry.getValue().toString()))
+                            .collect(Collectors.joining());
+
+        //map.forEach((k, v) -> );
+
+        //return null;
     }
 
-    //private List<String> zetOmNaarLijstVanStrings(//Lijst...) {
+    private <T> List<String> zetOmNaarLijstVanStrings(List<T> deLijst) {
 //TODO
-
-//    }
+    return deLijst.stream()
+            .map(T::toString)
+            .collect(Collectors.toList());
+   }
 
 }

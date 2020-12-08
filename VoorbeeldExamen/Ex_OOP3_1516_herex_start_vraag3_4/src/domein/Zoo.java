@@ -1,9 +1,7 @@
 package domein;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import persistentie.PersistentieController;
 
@@ -25,9 +23,14 @@ public class Zoo {//DUMMY
      */
     public List<Dier> geefDierenVanSoortMetNaam(String soortNaam) {
 //--
-        return Arrays.asList(new Dier(1, soortNaam, 50.0, new Soort(soortNaam)));
+        //return Arrays.asList(new Dier(1, soortNaam, 50.0, new Soort(soortNaam)));
+
+
 //--
-        
+        return dieren.stream()
+                .filter(dier -> dier.getSoort().getNaam().equalsIgnoreCase(soortNaam))
+                .sorted(Comparator.comparing(Dier::getGewicht))
+                .collect(Collectors.toList());
         //TODO
         //return null;
     }
@@ -38,12 +41,25 @@ public class Zoo {//DUMMY
      */
     public double geefGemiddeldeGewichtVanDierenInGebouwMetNaam(String gebouwNaam) {
 //--
-        if (gebouwNaam.equals("Reptielen")) {
-            return 75.0;
-        } else {
-            return 5.0;
+//        if (gebouwNaam.equals("Reptielen")) {
+//            return 75.0;
+//        } else {
+//            return 5.0;
+//        }
+        //Optional<Gebouw> gebouw = gebouwen.stream()
+        //                        .filter(g -> g.getNaam().equalsIgnoreCase(gebouwNaam))
+        //                        .findAny();
+        //gebouw.isPresent()
+        Gebouw gebouw = gebouwen.stream()
+                                .filter(g -> g.getNaam().equalsIgnoreCase(gebouwNaam))
+                                .findAny().orElse(null);
+        if (gebouw != null){
+            return gebouw.getDieren().stream()     //Stream<Dier>
+                    //.map(Dier::getGewicht)  //Stream<Double>
+                    .mapToDouble(Dier::getGewicht) //DoubleStream
+                    .average().getAsDouble();
         }
-
+        return 0;
 //--
         //TODO
         //return 0;
@@ -57,11 +73,21 @@ public class Zoo {//DUMMY
     public List<String> geefNamenVanDierenVanVerzorgerMetNummer(int verzorgerNummer) {
 
 //--
-        if (verzorgerNummer == 1) {
-            return Arrays.asList("Kroky", "Happy");
-        } else {
-            return Arrays.asList("Alvin", "Floppy", "Fluffie");
+        //if (verzorgerNummer == 1) {
+        //    return Arrays.asList("Kroky", "Happy");
+        //} else {
+        //    return Arrays.asList("Alvin", "Floppy", "Fluffie");
+        //}
+        Verzorger verzorger = verzorgers.stream()
+                                        .filter(v -> v.getNummer() == verzorgerNummer)
+                                        .findAny()
+                                        .orElse(null);
+        if (verzorger != null) {
+            return verzorger.getDieren().stream()   //Stream<Dier>
+                                        .map(Dier::getNaam) //Stram<String>
+                                        .collect(Collectors.toList());
         }
+        return new ArrayList<>();
 
 //-- 
     }
@@ -74,11 +100,23 @@ public class Zoo {//DUMMY
 //  *  NIET VERDER UITWERKEN
 //     */
     public List<Verzorger> verzorgersInGebouwMetNaam(String gebouwNaam) {
-        if (gebouwNaam.equalsIgnoreCase("Reptielen")) {
-            return verzorgers;
-        } else {
-            return new ArrayList<>();
+        //if (gebouwNaam.equalsIgnoreCase("Reptielen")) {
+        //    return verzorgers;
+        //} else {
+        //    return new ArrayList<>();
+        //}
+        Gebouw gebouw = gebouwen.stream()
+                                .filter(g -> g.getNaam().equalsIgnoreCase(gebouwNaam))
+                                .findAny()
+                                .orElse(null);
+        if (gebouw != null){
+            return verzorgers.stream()
+                            .filter(v -> new ArrayList(v.getDieren()).removeAll(gebouw.getDieren()))
+                            .collect(Collectors.toList());
+
         }
+        return null;
+
     }
 
     /**
@@ -88,4 +126,8 @@ public class Zoo {//DUMMY
     //TODO
     // TODO METHODE ....maakOverzichtVolgensSoort() ... hier uitschrijven
     //
+    public Map<Soort, List<Dier>> maakOverzichtVolgensSoort(){
+        return dieren.stream()
+                    .collect(Collectors.groupingBy(Dier::getSoort, TreeMap::new, Collectors.toList()));
+    }
 }

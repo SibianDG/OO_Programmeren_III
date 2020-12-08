@@ -1,14 +1,20 @@
 package domein;
 
 import java.io.Serializable;
-
+import javax.persistence.*;
+//@Entity
+//@NamedQuery(name = "Dier.metAlsSoortNaam", query = "SELECT d FROM Dier d WHERE d.soort.naam = :soortNaam ORDER BY d.gewicht ASC")
 public class Dier implements Serializable {
-
+    private static final long serialVersionUID = 1L;
+    //@Id
     private int nummer;
     private String naam;
     private double gewicht;
+    //@ManyToOne
     private Soort soort;
 
+    protected Dier() {
+    }
 
     public Dier(int nummer, String naam, double gewicht, Soort soort) {
         this.nummer = nummer;
@@ -57,10 +63,7 @@ public class Dier implements Serializable {
             return false;
         }
         final Dier other = (Dier) obj;
-        if (this.nummer != other.nummer) {
-            return false;
-        }
-        return true;
+        return this.nummer == other.nummer;
     }
 
     @Override
