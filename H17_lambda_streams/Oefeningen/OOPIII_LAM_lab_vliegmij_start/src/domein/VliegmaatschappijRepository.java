@@ -28,34 +28,51 @@ public class VliegmaatschappijRepository
 	}
 
 	public List<Vliegmaatschappij> geefAlleAirlinesMetMinstensAantalPartners(int aantal) {
-		return maatschappijen.stream().filter(m -> m.getPartners().size() >= aantal).collect(Collectors.toList());
+		return maatschappijen.stream()
+				.filter(m -> m.getPartners().size() >= aantal)
+				.collect(Collectors.toList());
 	}
 
 	public List<Vliegmaatschappij> geefAirlinesAlfabetischGesorteerd() {
 		//return maatschappijen.stream().sorted((m1, m2) -> m1.getNaam().compareTo(m2.getNaam())).collect(Collectors.toList());
-		return maatschappijen.stream().sorted(Comparator.comparing(Vliegmaatschappij::getNaam)).collect(Collectors.toList());
+		return maatschappijen.stream()
+				.sorted(Comparator.comparing(Vliegmaatschappij::getNaam))
+				.collect(Collectors.toList());
 	}
 
 	public List<Vliegmaatschappij> geefAirlinesGesorteerdVolgensAantalPartners() {
 		//return maatschappijen.stream().sorted((m1, m2) -> m1.getPartners().size() - m2.getPartners().size()).collect(Collectors.toList());
-		return maatschappijen.stream().sorted(Comparator.comparingInt(m -> m.getPartners().size())).collect(Collectors.toList());
+		return maatschappijen.stream()
+				.sorted(Comparator.comparingInt(m -> m.getPartners().size()))
+				.collect(Collectors.toList());
 	}
 
 	public Map<Vliegmaatschappij,Integer> geefAirlinesAantalKeerPartner() 
 	{
-		//todo
-		return null;
+		//TODO: MOEILIJKE!
+		return maatschappijen.stream()
+				.collect(Collectors.toMap(m -> m, mat -> (int) maatschappijen.stream()
+																.filter(m2 -> m2.getPartners().contains(mat.getNaam()))
+																.count()
+				));
 	}
 	
 	public String geefEersteAirlineStartendMet(String woord)
 	{
-		return maatschappijen.stream().filter(m -> m.getNaam().startsWith(woord)).findFirst().get().getNaam();
+		//TODO: keer kijken
+		return maatschappijen.stream()
+				.map(Vliegmaatschappij::getNaam)
+				.filter(naam -> naam.startsWith(woord))
+				.findAny()
+				.orElse("Geen gevonden");
 	}
 	
 	public Vliegmaatschappij geefEenAirlineMetPartner(String partner)
 	{
-		//todo
-		//return maatschappijen.stream().anyMatch(m -> m.getPartners().stream().anyMatch(p -> p.equals(partner)));
-		return null;
+		//TODO: moeilijke
+		return maatschappijen.stream()
+							.filter(m -> m.getPartners().contains(partner))
+							.findAny()
+							.orElse(null);
 	}
 }
