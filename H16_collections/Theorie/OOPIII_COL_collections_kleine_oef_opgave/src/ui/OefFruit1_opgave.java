@@ -3,9 +3,9 @@ package ui;
 import java.util.*;
 
 public class OefFruit1_opgave {
-    public static void main(String args[]) {
-        String arX[] = {"appel", "peer", "citroen", "kiwi"},
-                arY[] = {"banaan", "mango", "citroen", "kiwi", "zespri"};
+    public static void main(String[] args) {
+        String[] arX = {"appel", "peer", "citroen", "kiwi"},
+                arY = {"banaan", "mango", "citroen", "kiwi", "zespri"};
 
         /*
 	Behandel arX en arY als Collections en maak gebruik van de bulk

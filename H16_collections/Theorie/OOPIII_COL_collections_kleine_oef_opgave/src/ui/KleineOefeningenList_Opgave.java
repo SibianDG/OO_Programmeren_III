@@ -53,10 +53,10 @@ public class KleineOefeningenList_Opgave {
         //-------------------------------------------------------------
         //JAVA 7: //JAVA 8:
 
-        list.replaceAll(el -> el.toUpperCase());
+        list.replaceAll(String::toUpperCase);
 
         //werkt niet! Local
-        list = list.stream().map(el -> el.toUpperCase()).collect(Collectors.toList());
+        //list = list.stream().map(el -> el.toUpperCase()).collect(Collectors.toList());
 
     }
 
@@ -73,7 +73,7 @@ public class KleineOefeningenList_Opgave {
                             .collect(Collectors.toList());
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         new KleineOefeningenList_Opgave();
     }
 

@@ -32,8 +32,8 @@ class CollectionOperaties {
 
 public class OefFruit2_opgave {
 
-    public static void main(String args[]) {
-        String kist[][] = {{"appel", "peer", "citroen", "kiwi", "perzik"},
+    public static void main(String[] args) {
+        String[][] kist = {{"appel", "peer", "citroen", "kiwi", "perzik"},
         {"banaan", "mango", "citroen", "kiwi", "zespri", "pruim"},
         {"peche", "lichi", "kriek", "kers", "papaya"}};
 
@@ -49,7 +49,7 @@ public class OefFruit2_opgave {
             //.map(Arrays::stream); //stream <Stream <String> > willen we niet
             .flatMap(Arrays::stream)
             .collect(Collectors.toList());
-        String mand[];
+        String[] mand;
 
 //Voeg de verschillende kisten samen in een ArrayList list.
 //--------------------------------------------------------

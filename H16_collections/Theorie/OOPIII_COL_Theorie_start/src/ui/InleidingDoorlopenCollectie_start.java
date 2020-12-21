@@ -14,8 +14,6 @@ public class InleidingDoorlopenCollectie_start
         woorden.add("Eerste");
         woorden.add("Tweede");
         woorden.add("Derde");
-
-        
     }
 
 }

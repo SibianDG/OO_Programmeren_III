@@ -17,7 +17,7 @@ import java.util.TreeMap;
 public class DoorlopenEntrySetMetIterator
 {
 
-    public static void main(String args[])
+    public static void main(String[] args)
     {
         Map<Integer, Auteur> auteurs =
                 new HashMap<>();
@@ -25,6 +25,5 @@ public class DoorlopenEntrySetMetIterator
         auteurs.put(1234, new Auteur("Chevallier", "Robert"));
         auteurs.put(876, new Auteur("Gosling", "James"));
         auteurs.put(5648, new Auteur("Chapman", "Steve"));
-
     }
 }

@@ -14,7 +14,6 @@ public class Student
         setVoornaam(voornaam);
         setWoonplaats(woonplaats);
     }
-
     
     public long getStamboeknr()
     {
@@ -66,15 +65,10 @@ public class Student
         this.woonplaats = woonplaats;
     }
 
-    
-
     @Override
     public String toString()
     {
         return "\nStudent{" + "stamboeknr=" + stamboeknr + ", naam=" + naam + ", voornaam=" + voornaam + ", woonplaats=" + woonplaats + '}';
     }
-
-    
-    
 
 }

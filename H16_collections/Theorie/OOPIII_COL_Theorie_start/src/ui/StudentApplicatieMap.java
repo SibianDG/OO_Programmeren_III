@@ -22,6 +22,5 @@ public class StudentApplicatieMap
          
         System.out.println(lijstStudenten);
         
-        
     }
 }

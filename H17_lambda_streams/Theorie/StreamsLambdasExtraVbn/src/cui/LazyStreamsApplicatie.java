@@ -35,7 +35,7 @@ public class LazyStreamsApplicatie
         Stream <String> namenMet3letters = 
                 names.stream()
                      .filter(name -> getLength(name)==3)
-                     .map(name -> changeToUpper(name));
+                     .map(LazyStreamsApplicatie::changeToUpper);
               
         System.out.println("Stream gecreëerd, gefilterd, gemapt,...");
         System.out.println("nu klaar om findFirst op te roepen...");
@@ -44,7 +44,7 @@ public class LazyStreamsApplicatie
 //        dat voldoet aan de filter
         String eersteNaamMet3letters = 
                 namenMet3letters.findFirst()
-                                .get();
+                                .orElse(null);
         System.out.println(eersteNaamMet3letters);
         
 //        Beter:

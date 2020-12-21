@@ -24,7 +24,7 @@ public class JavaStreams
         IntStream
                 .range(1, 10)
                 .skip(5)
-                .forEach(x -> System.out.println(x));
+                .forEach(System.out::println);
         System.out.println();
 
         // 3. Integer Stream with sum

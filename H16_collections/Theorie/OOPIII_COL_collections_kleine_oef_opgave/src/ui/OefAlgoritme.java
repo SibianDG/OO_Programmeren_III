@@ -79,7 +79,7 @@ public class OefAlgoritme {
 		System.out.println("omgekeerde volgorde : ");
 		toonLijst(boeken);
 
-		Integer getallen[] = { 6, 5, 9, 3 };
+		Integer[] getallen = { 6, 5, 9, 3 };
 		// Toon het grootste element van de array getallen
 		// -----------------------------------------------
 		// java7
