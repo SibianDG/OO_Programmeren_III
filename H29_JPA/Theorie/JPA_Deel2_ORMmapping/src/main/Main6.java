@@ -25,12 +25,12 @@ public class Main6 {
                 .getSingleResult();
 
         if (campusGent != null && campusAalst != null && werkruimte != null){
-            //List<Docent> docentList = em.createNamedQuery("Docent.docentenInTweeCampussen", Docent.class)
-            //        .setParameter("campusA", campusGent)
-            //        .setParameter("campusB", campusAalst)
-            //        .getResultList();
-            //docentList.forEach(d -> d.setWerkruimte(werkruimte));
-            //em.getTransaction().commit(); // TODO! niet vergeten
+            List<Docent> docentList = em.createNamedQuery("Docent.docentenInTweeCampussen", Docent.class)
+                    .setParameter("campusA", campusGent)
+                    .setParameter("campusB", campusAalst)
+                    .getResultList();
+            docentList.forEach(d -> d.setWerkruimte(werkruimte));
+            em.getTransaction().commit(); // TODO! niet vergeten
 
             //Alternatief (maar niet zo efficiënt omdat je niet alle betrokken objecten al in de context hebt
             campusGent.getDocenten().stream()

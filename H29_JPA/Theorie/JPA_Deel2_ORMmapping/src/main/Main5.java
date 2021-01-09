@@ -27,6 +27,8 @@ public class Main5 {
         System.out.println(campuses);
         System.out.println(docentList);
 
+
+        //bkijken wat lazy-loading is fzo? 24/11 40'
         Docent d1  = docentList.get(0);
         Campus dummy1 = d1.getCampussen().iterator().next();
         System.out.printf("%s %s\n", d1, d1.getCampussen());

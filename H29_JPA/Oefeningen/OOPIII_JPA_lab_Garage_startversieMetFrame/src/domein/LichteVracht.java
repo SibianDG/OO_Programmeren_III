@@ -1,9 +1,11 @@
 package domein;
 
 import javax.persistence.Entity;
+import java.io.Serial;
 
 @Entity
 public class LichteVracht extends Vervoermiddel {
+    @Serial
     private static final long serialVersionUID = 1L;
     private double massa;
 

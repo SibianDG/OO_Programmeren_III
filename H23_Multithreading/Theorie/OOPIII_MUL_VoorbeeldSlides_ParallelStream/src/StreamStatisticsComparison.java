@@ -1,4 +1,3 @@
-package main;
 // StreamStatisticsComparison.java
 // Comparing performance of sequential and parallel stream operations.
 import java.time.Duration; //NIEUW JAVA8

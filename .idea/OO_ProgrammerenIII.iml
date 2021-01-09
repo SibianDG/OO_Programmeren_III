@@ -7,16 +7,18 @@
         <datasource-mapping>
           <factory-entry name="OOPIII_JPA_GaragePU" />
           <factory-entry name="bierWinkels" />
-          <factory-entry name="school" />
+          <factory-entry name="school" value="901aad13-a6eb-49f5-ba3f-8aed83494e28" />
         </datasource-mapping>
         <naming-strategy-map />
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/H29_JPA/Oefeningen/OOPIII_JPA_lab_Garage_startversieMetFrame/src/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/H29_JPA/Theorie/JPA_Deel2_ORMmapping/src/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_14" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/H29_JPA/Oefeningen/OOPIII_JPA_lab_Garage_startversieMetFrame/src" isTestSource="false" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

@@ -15,7 +15,7 @@ public class FileTransfer {
     public FileTransfer(String host) {
         try {
             //Maak verbinding met server, init attributen
-            socket = new Socket(host, 44444);
+            socket = new Socket(host, 44445);
             socketInput = new Scanner(socket.getInputStream());
             socketOutput = new Formatter(socket.getOutputStream());
         } catch (IOException ex) {

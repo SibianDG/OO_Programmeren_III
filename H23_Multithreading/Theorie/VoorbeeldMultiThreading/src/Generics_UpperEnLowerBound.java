@@ -13,7 +13,7 @@ public class Generics_UpperEnLowerBound {
         //Upperbound nodig bij LEZEN/ACCESS tot objecten
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3));
         System.out.println(sumOfList(list));
-        //Lowerbround nodig SCHRIJVEN
+        //Lowerbround nodig om te SCHRIJVEN/toevoegen!!
         System.out.println(list);
         addNumbers(list);
         System.out.println(list);
@@ -24,6 +24,7 @@ public class Generics_UpperEnLowerBound {
         list.add(5);
     }
 
+    //UPPERBOUND
     public double sumOfList(List<? extends Number> list){
         double s = 0;
         for (Number n: list){

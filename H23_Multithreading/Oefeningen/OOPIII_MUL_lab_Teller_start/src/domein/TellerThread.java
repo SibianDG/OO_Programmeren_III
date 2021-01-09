@@ -56,7 +56,8 @@ public class TellerThread implements Runnable {
 			try {
 				Thread.sleep(100);
 			//TODO nagaan of er moet gepauzeerd worden
-		    // en indien zo Thread in wait toestand brengen
+		    // en indien zo Thread in await toestand brengen
+				// + lock
 				accessLock.lock();
 				while (pauze) {
 					kanDoorgaan.await();

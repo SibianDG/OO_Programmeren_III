@@ -22,8 +22,7 @@ public class GarageController {
 
     public List<String> geefOnderhoudsbeurtenOpDatum(int jaar, int maand, int dag) {
         return gb.geefOnderhoudsbeurtenOpDatumJPA(LocalDate.of(jaar, maand, dag))
-                .stream().map(Onderhoudsbeurt::getVervoermiddel)
-                .map(Vervoermiddel::getNummerplaat)
+                .stream().map(o -> o.getVervoermiddel().getNummerplaat())
                 .collect(Collectors.toList());
     }
 

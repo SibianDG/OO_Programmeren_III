@@ -16,7 +16,7 @@ public class FileServer {
 
     public void run() {
         //initialiseer server
-        try (ServerSocket serverSocket = new ServerSocket(44444, 10)) { //10: "wachtende klanten"
+        try (ServerSocket serverSocket = new ServerSocket(44446, 10)) { //10: "wachtende klanten"
             System.out.println("Fileserver up");
             //wacht tot een client verbindig maakt
             //verwerk al de verzoeken van een client tot deze afsluit

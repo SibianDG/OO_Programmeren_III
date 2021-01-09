@@ -26,5 +26,10 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/sibia/OneDrive - Hogeschool Gent/2e bach/OO_Programmeren_III/H28_Netwerkprogrammatie/Theorie/OOPIII_NET_TCP_FX_common.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
